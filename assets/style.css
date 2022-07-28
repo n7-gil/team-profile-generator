@@ -1,0 +1,59 @@
+body {
+    font-size: 18px;
+}
+
+h1 {
+    text-align: center;
+    background-color: black;
+    color: aliceblue;
+    flex-wrap: wrap;
+    font-size: 45px;
+    padding: 45px;
+}
+
+.team {
+    
+    flex-wrap: wrap;
+    padding: 0.5rem;
+	justify-content: center;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+}
+
+.card p {
+    color: white;
+    font-size: 15px;
+    background-color: black;
+}
+
+#managerCard {
+    margin: 10px;
+    color: white;
+    background: black;
+    font-size: 25px;
+    padding: 28px;
+    width: 20%;
+}
+
+#engineerCard {
+    margin: 10px;
+    color: white;
+    background: black;
+    font-size: 25px;
+    padding: 28px;
+    width: 20%;
+}
+
+#internCard {
+    margin: 10px;
+    color: white;
+    background: black;
+    font-size: 25px;
+    padding: 28px;
+    width: 20%;
+
+}
+
