@@ -165,10 +165,29 @@ async function startApp() {
       </div>`
 
     })
+  } else {
+    await inquirer.prompt(internQuestions)
+    .then(data => {
+      fileContent += `<div class="intern" id="internCard">
+        <div class="card-content">
+            <p class="internName">
+                Intern Name: ${data.intern_name}
+            </p>
+            <p class="internID">
+                ID: ${data.intern_id}
+            </p>
+            <p class="internEmail">
+                Email: <a href="mailto:${data.intern_email}">${data.intern_email}</a>
+            </p>
+            <p class="internGithub">
+                Github: <a href="https://github.com/${data.intern_github}">${data.intern_github}</a>
+            </p>                           
+        </div>
+      </div>`
+    })
   } 
   
-
-  
+ 
 // end of html file
   fileContent += 
   `
