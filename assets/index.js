@@ -54,8 +54,8 @@ const engineerQuestions = [
     },
     {
       type: 'input',
-      name: 'engineer_phone',
-      message: "What's your engineer's office phone number?",
+      name: 'engineer_github',
+      message: "What's your engineer's github?",
     },
 ]
 
@@ -77,8 +77,8 @@ const internQuestions = [
     },
     {
       type: 'input',
-      name: 'intern_phone',
-      message: "What's your intern's office phone number?",
+      name: 'intern_github',
+      message: "What's your intern's github?",
     },
 ]
 
@@ -108,7 +108,7 @@ async function startApp() {
               
                   <div class="card-container">
                       
-                      <div class="manager" id="managerCard">`;
+                      `;
                       
  
 // body/cards of html file
@@ -116,30 +116,62 @@ async function startApp() {
   .then(data => {
 
 
-    fileContent += `<div class="card-content">
-      <p class="managerName">
-         Manager Name: ${data.manager_name}
-      </p>                                                           
-      <p class="managerID">
-          ID: ${data.manager_id}
-      </p>
-      <p class="managerEmail">
-          Email:<a href="mailto:${data.manager_email}">${data.manager_email}</a></li>
-          
-      </p>
-      <p class="managerPhone">
-          Office Number: ${data.manager_phone}
-      </p>                           
-  </div >`
-
-
-
+    fileContent += `
+    <div class="manager" id="managerCard">
+      <div class="card-content">
+        <p class="managerName">
+          Manager Name: ${data.manager_name}
+        </p>                                                           
+        <p class="managerID">
+            ID: ${data.manager_id}
+        </p>
+        <p class="managerEmail">
+            Email:<a href="mailto:${data.manager_email}">${data.manager_email}</a>
+            
+        </p>
+        <p class="managerPhone">
+            Office Number: ${data.manager_phone}
+        </p>                           
+      </div>
+    </div>`  
   })
+
+  let engineerInternAnswer = ""
+
+  await inquirer.prompt(engineerOrIntern)
+  .then(data => {
+    engineerInternAnswer = data.engineer_intern
+    console.log(engineerInternAnswer);
+  })
+
+  if (engineerInternAnswer === "engineer") {
+    await inquirer.prompt(engineerQuestions)
+    .then(data => {
+      fileContent += `<div class="engineer" id="engineerCard">
+        <div class="card-content">
+            <p class="engineerName">
+                Engineer Name: ${data.engineer_name}
+            </p>
+            <p class="engineerID">
+                ID: ${data.engineer_id}
+            </p>
+            <p class="engineerEmail">
+                Email: <a href="mailto:${data.engineer_email}">${data.engineer_email}</a>
+            </p>
+            <p class="engineerGithub">
+                Github: <a href="https://github.com/${data.engineer_github}">${data.engineer_github}</a>
+            </p>                           
+        </div>
+      </div>`
+
+    })
+  } 
+  
 
   
 // end of html file
   fileContent += 
-  `</div>
+  `
     </div>
       </div>
   
