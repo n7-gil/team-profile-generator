@@ -2,7 +2,7 @@ import inquirer from 'inquirer';
 // const fs = require('fs');
 import * as fs from 'fs';
 
-
+// first set of questions asked. Collects manager info
 const startQuestions = [
   
     {
@@ -27,6 +27,7 @@ const startQuestions = [
     },
 ]
 
+// asks whether the employee is an intern or engineer
 const engineerOrIntern = [
     {
       type: 'list',
@@ -36,6 +37,7 @@ const engineerOrIntern = [
     },
 ]
 
+// if user selects engineer
 const engineerQuestions = [
     {
       type: 'input',
@@ -59,6 +61,7 @@ const engineerQuestions = [
     },
 ]
 
+// if user selects intern
 const internQuestions = [
     {
       type: 'input',
@@ -111,7 +114,7 @@ async function startApp() {
                       `;
                       
  
-// body/cards of html file
+// body/cards of html file. Gathers data from the first set of questions and transfers the data in the manager card
   await inquirer.prompt(startQuestions)
   .then(data => {
 
@@ -136,6 +139,8 @@ async function startApp() {
     </div>`  
   })
 
+  //data from the second prompt asking whether the employee is an engineer or an intern. 
+  // Then passes the data into the engineer card or intern card 
   let engineerInternAnswer = ""
 
   await inquirer.prompt(engineerOrIntern)
@@ -206,7 +211,7 @@ async function startApp() {
   </body>
   </html>`
 
-
+// creates the new index.html file
   fs.writeFile('index.html', fileContent, (err) => { 
     if (err) { 
       console.log(err); 
@@ -217,17 +222,4 @@ async function startApp() {
 
 startApp()
 
-
-  
-// .then((response) => {
-
-//   // fs.writeFile('index.html', response.manager_name,)
-
-//   console.log(response.manager_name);
-//   console.log(response.manager_id);
-    
-      
-
-
-// writeFile('index.html', response.first_name);
 
